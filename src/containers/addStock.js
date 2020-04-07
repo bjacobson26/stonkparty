@@ -1,6 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addStock } from '../actions'
+import styled from 'styled-components'
+
+let StyledInput = styled.input`
+  font-size: 50px;
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+  display: block;
+  margin: auto;
+`
 
 let AddStock = ({ dispatch }) => {
   let input
@@ -17,12 +27,13 @@ let AddStock = ({ dispatch }) => {
           input.value = ''
         }}
        >
-         <input
+         <StyledInput
+            placeholder={'Enter Stock Ticker...'}
             ref={ node => {
               input = node
             }}
           />
-          <button type="submit">Add Stonk</button>
+          {/* <button type="submit">Add Stonk</button> */}
        </form>
     </div>
   )

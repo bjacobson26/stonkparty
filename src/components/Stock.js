@@ -1,14 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const StyledStock = styled.div`
+  font-size: 50px;
+  text-align: left;
+`;
+
+const StyledLink = styled.a`
+  font-size: 20px;
+`
 
 const Stock = ({ onClick, stockTicker }) => {
   return(
-    <li
-      onClick={onClick}
-      style={{ fontSize: '25px' }}
-     >
-       {stockTicker}
-    </li>
+    <div>
+      <StyledStock>{stockTicker}</StyledStock>
+      <StyledLink 
+        href=""
+        onClick={e => {
+          e.preventDefault()
+          onClick()
+        }}
+      >
+          Remove
+      </StyledLink>
+    </div>
   )
 }
 
