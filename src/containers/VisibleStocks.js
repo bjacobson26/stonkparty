@@ -8,7 +8,6 @@ const getVisibleStocks = (stocks) => {
 }
 
 const mapStateToProps = state => {
-  console.log('State', state)
   return {
     stocks: getVisibleStocks(state.stocks)
   }

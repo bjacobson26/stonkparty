@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Stock from './Stock'
+import { StockContainer } from '../containers/StockContainer'
 
 const StockList = ({ stocks, onRemoveStockClick }) => {
   return(
     <ul>
       {stocks.map((stock, index) => (
-        <Stock key={index} {...stock} onClick={() => onRemoveStockClick(index)} />
+        <StockContainer key={index} {...stock} onClick={() => onRemoveStockClick(index)} />
       ))}
     </ul>
   )

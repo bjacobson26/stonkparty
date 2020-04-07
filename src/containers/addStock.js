@@ -33,7 +33,6 @@ let AddStock = ({ dispatch }) => {
               input = node
             }}
           />
-          {/* <button type="submit">Add Stonk</button> */}
        </form>
     </div>
   )

@@ -1,4 +1,6 @@
 import { createStore } from 'redux'
-import stonkpartyApp from './reducers'
+import { stonkpartyApp } from './reducers'
 
 const store = createStore(stonkpartyApp, window.STATE_FROM_SERVER)
+
+export default store

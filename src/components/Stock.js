@@ -11,21 +11,28 @@ const StyledLink = styled.a`
   font-size: 20px;
 `
 
-const Stock = ({ onClick, stockTicker }) => {
-  return(
-    <div>
-      <StyledStock>{stockTicker}</StyledStock>
-      <StyledLink 
-        href=""
-        onClick={e => {
-          e.preventDefault()
-          onClick()
-        }}
-      >
-          Remove
-      </StyledLink>
-    </div>
-  )
+class Stock extends React.Component {
+  componentDidMount() {
+    this.props.updateStockGraphData(this.props.stockTicker)
+  }
+  
+  render() {
+    return(
+      <div>
+        <StyledStock>{this.props.stockTicker}</StyledStock>
+        <p>{this.props.graphData == null ? 'Loading graph data...' : 'Graph data loaded'}</p>
+        <StyledLink 
+          href=""
+          onClick={e => {
+            e.preventDefault()
+            this.props.onClick()
+          }}
+        >
+            Remove
+        </StyledLink>
+      </div>
+    )
+  }
 }
 
 Stock.propTypes = {
