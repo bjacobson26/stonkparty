@@ -72,7 +72,9 @@ class CandleStickChartWithBollingerBandOverlay extends React.Component {
 
 		const calculatedData = ema20(sma20(ema50(smaVolume50(bb(initialData)))));
 		const xScaleProvider = discontinuousTimeScaleProvider
-			.inputDateAccessor(d => d.date);
+			.inputDateAccessor((d) => {
+				return new Date(d.date);
+			});
 		const {
 			data,
 			xScale,

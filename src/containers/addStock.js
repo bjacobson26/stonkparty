@@ -10,6 +10,7 @@ let StyledInput = styled.input`
   text-align: center;
   display: block;
   margin: auto;
+  background-color: black;
 `
 
 let AddStock = ({ dispatch }) => {

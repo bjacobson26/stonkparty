@@ -3,7 +3,8 @@ import { combineReducers } from 'redux'
 import {
   ADD_STOCK,
   REMOVE_STOCK,
-  UPDATE_STOCK_GRAPH_DATA
+  UPDATE_STOCK_GRAPH_DATA,
+  UPDATE_STOCK_QUOTE
 } from './actions'
 
 function stocks(state = [], action) {
@@ -15,7 +16,8 @@ function stocks(state = [], action) {
         ...state,
         {
           stockTicker: action.stockTicker,
-          graphData: null
+          graphData: null,
+          quote: null
         }
       ]
     case REMOVE_STOCK:
@@ -27,6 +29,18 @@ function stocks(state = [], action) {
       newState.map((stock, index) => {
         if(stock.stockTicker === action.stockTicker) {
           stock.graphData = action.stockGraphData
+        }
+
+        return stock
+      })
+
+      return newState
+    case UPDATE_STOCK_QUOTE:
+      console.log('updating stock quote')
+      newState = [...state]
+      newState.map((stock, index) => {
+        if(stock.stockTicker === action.stockTicker) {
+          stock.quote = action.stockQuote
         }
 
         return stock
