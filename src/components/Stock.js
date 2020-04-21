@@ -2,10 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import BeatLoader from "react-spinners/BeatLoader";
+const moment = require('moment')
 
 const StyledStock = styled.div`
   text-align: left;
+  margin-top: 20px;
   margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 4px;
+  opacity: 1;
 `;
 
 const StyledLink = styled.a`
@@ -33,10 +39,11 @@ const percentChange = (stockQuote) => (
 
 const StockQuote = (stockQuote) => (<div>
   <h2>{stockQuote.price.shortName}</h2>
+  <p>{moment().format("MMMM Do YYYY, h:mm:ss a")}</p>
   <table class="pure-table">
     <tr>
       <th>Market Price</th>
-      <th>%</th>
+      <th>% Change</th>
       <th>Day High</th>
       <th>Day Low</th>
     </tr>
@@ -51,10 +58,33 @@ const StockQuote = (stockQuote) => (<div>
 </div>)
 
 class Stock extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      lastRefreshAt: null
+    }
+
+    this.fetchData = this.fetchData.bind(this)
+    this.beginPolling = this.beginPolling.bind(this)
+  }
+
   componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData() {
+    console.log('fetching data...')
     this.props.updateStockGraphData(this.props.stockTicker)
-    console.log('component mounted')
     this.props.updateStockQuote(this.props.stockTicker)
+    this.props.updateWallStreetBetsData(this.props.stockTicker)
+    
+    this.setState({ lastRefreshAt: moment() })
+    this.beginPolling()
+  }
+
+  beginPolling() {
+    setTimeout(this.fetchData, 30000)
   }
   
   render() {
@@ -63,11 +93,10 @@ class Stock extends React.Component {
         <StyledStock>
           <h1>{this.props.stockTicker}</h1>
           <div>
-            { this.props.quote === null ? <BeatLoader size={20} color={"white"} /> : StockQuote(this.props.quote) }
+            { this.props.quote === null ? <BeatLoader size={20} color={"green"} /> : StockQuote(this.props.quote) }
           </div>
-        </StyledStock>
-        
-        <div>
+          <br></br>
+          <div>
           <StyledLink 
             href=""
             onClick={e => {
@@ -78,6 +107,7 @@ class Stock extends React.Component {
               Remove
           </StyledLink>
         </div>
+        </StyledStock>
       </div>
     )
   }

@@ -4,7 +4,8 @@ import {
   ADD_STOCK,
   REMOVE_STOCK,
   UPDATE_STOCK_GRAPH_DATA,
-  UPDATE_STOCK_QUOTE
+  UPDATE_STOCK_QUOTE,
+  UPDATE_WALL_STREET_BETS_DATA
 } from './actions'
 
 function stocks(state = [], action) {
@@ -17,7 +18,8 @@ function stocks(state = [], action) {
         {
           stockTicker: action.stockTicker,
           graphData: null,
-          quote: null
+          quote: null,
+          wallStreetBetsData: null
         }
       ]
     case REMOVE_STOCK:
@@ -41,6 +43,18 @@ function stocks(state = [], action) {
       newState.map((stock, index) => {
         if(stock.stockTicker === action.stockTicker) {
           stock.quote = action.stockQuote
+        }
+
+        return stock
+      })
+
+      return newState
+    case UPDATE_WALL_STREET_BETS_DATA:
+      console.log('updating wsb data', action)
+      newState = [...state]
+      newState.map((stock, index) => {
+        if(stock.stockTicker === action.stockTicker) {
+          stock.wallStreetBetsData = action.wallStreetBetsData
         }
 
         return stock

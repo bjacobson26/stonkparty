@@ -42,6 +42,11 @@ app.get('/stock_quote/:ticker', (req, res) => {
   })
 })
 
+app.get('/wsb/:ticker', (req, res) => {
+  console.log('fetching wsb data for:', req.params.ticker)
+  return res.status(200).send({})
+})
+
 console.log('listening on port 5000')
 app.listen(5000);
 

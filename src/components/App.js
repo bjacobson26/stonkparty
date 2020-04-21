@@ -4,18 +4,22 @@ import AddStock from '../containers/addStock'
 import styled from 'styled-components'
 
 const Root = styled.div`
-  background-color: black;
   opacity: 0.9;
   height: 1000px;
   padding: 20px;
-  color: white;
+`
+
+const Watchlist = styled.div`
+  width: 50%;
 `
 
 const App = () => {
   return(
     <Root>
-      <AddStock />
-      <VisibleStocks />
+      <Watchlist>
+        <AddStock />
+        <VisibleStocks />
+      </Watchlist>
     </Root>
   )
 }
