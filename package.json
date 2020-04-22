@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "3.7.2",
     "cors": "2.8.5",
     "express": "4.17.1",
     "http-proxy-middleware": "1.0.3",
@@ -17,6 +19,7 @@
     "node-fetch": "2.6.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
+    "react-animated-css": "1.2.1",
     "react-dom": "16.13.1",
     "react-redux": "7.2.0",
     "react-spinners": "0.8.1",

@@ -6,6 +6,7 @@ import {
   updateWallStreetBetsData 
 } from '../actions'
 
+import { STONKS_API_URL } from '../constants'
 
 const mapStateToProps = state => {
   return {
@@ -16,21 +17,21 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateStockGraphData: stockTicker => {
-      fetch(`http://localhost:5000/stock_data/${stockTicker}`)
+      fetch(`${STONKS_API_URL}/stock_data/${stockTicker}`)
       .then(response => response.json())
       .then((graphData) => {
         dispatch(updateStockGraphData(stockTicker, graphData))
       })
     },
     updateStockQuote: stockTicker => {
-      fetch(`http://localhost:5000/stock_quote/${stockTicker}`)
+      fetch(`${STONKS_API_URL}/stock_quote/${stockTicker}`)
       .then(response => response.json())
       .then((stockQuote) => {
         dispatch(updateStockQuote(stockTicker, stockQuote))
       })
     },
     updateWallStreetBetsData: stockTicker => {
-      fetch(`http://localhost:5000/wsb/${stockTicker}`)
+      fetch(`${STONKS_API_URL}/wsb/${stockTicker}`)
       .then(response => response.json())
       .then((wsbData) => {
         dispatch(updateWallStreetBetsData(stockTicker, wsbData))

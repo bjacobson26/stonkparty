@@ -2,7 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import BeatLoader from "react-spinners/BeatLoader";
+import { Animated } from "react-animated-css";
+
 const moment = require('moment')
+
 
 const StyledStock = styled.div`
   text-align: left;
@@ -12,6 +15,7 @@ const StyledStock = styled.div`
   padding: 20px;
   border-radius: 4px;
   opacity: 1;
+  width: 80%;
 `;
 
 const StyledLink = styled.a`
@@ -40,7 +44,7 @@ const percentChange = (stockQuote) => (
 const StockQuote = (stockQuote) => (<div>
   <h2>{stockQuote.price.shortName}</h2>
   <p>{moment().format("MMMM Do YYYY, h:mm:ss a")}</p>
-  <table class="pure-table">
+  <table className="pure-table">
     <tr>
       <th>Market Price</th>
       <th>% Change</th>
@@ -89,24 +93,26 @@ class Stock extends React.Component {
   render() {
     return(
       <div>
-        <StyledStock>
-          <h1>{this.props.stockTicker}</h1>
-          <div>
-            { this.props.quote === null ? <BeatLoader size={20} color={"green"} /> : StockQuote(this.props.quote) }
+        <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+          <StyledStock>
+            <h1>{this.props.stockTicker}</h1>
+            <div>
+              { this.props.quote === null ? <BeatLoader size={20} color={"green"} /> : StockQuote(this.props.quote) }
+            </div>
+            <br></br>
+            <div>
+            <StyledLink 
+              href=""
+              onClick={e => {
+                e.preventDefault()
+                this.props.onClick()
+              }}
+            >
+                Remove
+            </StyledLink>
           </div>
-          <br></br>
-          <div>
-          <StyledLink 
-            href=""
-            onClick={e => {
-              e.preventDefault()
-              this.props.onClick()
-            }}
-          >
-              Remove
-          </StyledLink>
-        </div>
-        </StyledStock>
+          </StyledStock>
+        </Animated>
       </div>
     )
   }

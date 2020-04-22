@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import Feed from '../components/Feed'
 import { updateWsbFeed } from '../actions'
 import fetch from 'node-fetch'
+import { STONKS_API_URL } from '../constants'
 
 const getVisibleFeed = (feed) => {
   // could eventually add filters here
@@ -9,7 +10,6 @@ const getVisibleFeed = (feed) => {
 }
 
 const mapStateToProps = state => {
-  console.log("state", state)
   return {
     feed: getVisibleFeed(state.feed)
   }
@@ -18,7 +18,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateWsbFeed: () => {
-      fetch(`http://localhost:5000/wsbFeed`)
+      fetch(`${STONKS_API_URL}/wsbFeed`)
         .then(response => response.json())
         .then((feedData) => {
           dispatch(updateWsbFeed(feedData))

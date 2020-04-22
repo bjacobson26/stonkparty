@@ -1,0 +1,1 @@
+export const STONKS_API_URL = process.env.STONKS_API_URL || 'http://localhost:5000'

@@ -1,10 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import BeatLoader from "react-spinners/BeatLoader";
+import { Animated } from "react-animated-css";
+
 const moment = require('moment')
 
 const Container = styled.div`
   padding: 20px;
+  height: 800px;
+  overflow: scroll;
+  border-radius: 3px;
 `
 
 const DisplayWsbPost = styled.div`
@@ -14,17 +19,24 @@ const DisplayWsbPost = styled.div`
   font-size: 10pt;
 `
 
+const WsbPostAuthor = styled.p`
+  font-style: italic;
+`
+
 const WsbPost = (post, key) => (
   <DisplayWsbPost key={key} >
+    <WsbPostAuthor>{post.author} said...</WsbPostAuthor>
     <p>{post.body}</p>
-    <small>{post.author} on {moment.unix(post.created_utc).format("MMMM Do YYYY, h:mm:ss a")}</small>
+    <small>{moment.unix(post.created_utc).format("MMMM Do YYYY, h:mm:ss a")} on /r/wallstreetbets</small>
   </DisplayWsbPost>
 )
 
 const DisplayFeed = (feed) => (
   <div>
     {feed.map((post, index) => (
-        WsbPost(post, index)
+        <Animated animationIn={"zoomIn"} key={post.name}>
+          {WsbPost(post, post.name)}
+        </Animated>
     ))}
   </div>
 );
@@ -52,10 +64,12 @@ class Feed extends React.Component {
 
   render() {
     return(
-      <Container>
-        <h1>Feed</h1>
-        {this.props.feed?.length >= 1 ? DisplayFeed(this.props.feed) : <BeatLoader size={20} color={"green"} />}
-      </Container>
+      <Animated animationIn="bounceInRight" animationOut="fadeOut" isVisible={true}>
+        <Container>
+          <h1>Feed</h1>
+          {this.props.feed?.length >= 1 ? DisplayFeed(this.props.feed) : <BeatLoader size={20} color={"green"} />}
+        </Container>
+      </Animated>
     )
   }
 }

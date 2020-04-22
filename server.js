@@ -4,6 +4,15 @@ const app = express();
 app.use(cors());
 const yahooFinance = require('yahoo-finance')
 const wsb = require('./wsb')
+const path = require('path')
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 
 app.get('/stock_data/:ticker', (req, res) => {
   const today = new Date()
@@ -54,6 +63,7 @@ app.get('/wsbFeed', async (_, res) => {
   return res.status(200).send(resp)
 })
 
-console.log('listening on port 5000')
-app.listen(5000);
+const port = process.env.PORT || 5000
+console.log(`listening on port ${port}`)
+app.listen(port)
 
