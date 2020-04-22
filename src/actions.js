@@ -3,6 +3,7 @@ export const REMOVE_STOCK = 'REMOVE_STONK'
 export const UPDATE_STOCK_GRAPH_DATA = 'UPDATE_STOCK_GRAPH_DATA'
 export const UPDATE_STOCK_QUOTE = 'UPDATE_STOCK_QUOTE'
 export const UPDATE_WALL_STREET_BETS_DATA = 'UPDATE_WALL_STREET_BETS_DATA'
+export const UPDATE_WSB_FEED = 'UPDATE_WSB_FEED'
 
 export function addStock(stockTicker) {
   return { type: ADD_STOCK, stockTicker }
@@ -22,4 +23,9 @@ export function updateStockQuote(stockTicker, stockQuote) {
 
 export function updateWallStreetBetsData(stockTicker, wallStreetBetsData) {
   return { type: UPDATE_WALL_STREET_BETS_DATA, stockTicker: stockTicker, wallStreetBetsData: wallStreetBetsData }
+}
+
+export function updateWsbFeed(feedData) {
+  console.log(UPDATE_WSB_FEED, feedData)
+  return { type: UPDATE_WSB_FEED, feed: feedData }
 }

@@ -4,6 +4,7 @@ const app = express();
 app.use(cors());
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const yahooFinance = require('yahoo-finance')
+const wsb = require('./wsb')
 
 app.get('/stock_data/:ticker', (req, res) => {
   const today = new Date()
@@ -45,6 +46,13 @@ app.get('/stock_quote/:ticker', (req, res) => {
 app.get('/wsb/:ticker', (req, res) => {
   console.log('fetching wsb data for:', req.params.ticker)
   return res.status(200).send({})
+})
+
+app.get('/wsbFeed', async (_, res) => {
+  console.log('fetching wsb data')
+  let resp = await wsb.wsbTopPostComments()
+  console.log('wsb data fetch successful')
+  return res.status(200).send(resp)
 })
 
 console.log('listening on port 5000')

@@ -14,18 +14,18 @@ function searchWsb(stockTicker) {
 }
 
 function wsbTopPostComments() {
-  fetch('https://www.reddit.com/r/wallstreetbets.json')
-  .then((resp) => resp.json())
-  .then((wsbData) => {
-    const topPostUrl = wsbData.data.children[0].data.url + '.json'
-    fetch(topPostUrl)
+  return fetch('https://www.reddit.com/r/wallstreetbets.json')
     .then((resp) => resp.json())
-    .then((topPostData) => {
-      topPostData[1].data.children.map((child) => {
-        console.log(child.data);
-      })
-    });
-  })
+    .then((wsbData) => {
+      const topPostUrl = wsbData.data.children[0].data.url + '.json'
+      return fetch(topPostUrl)
+        .then((resp) => resp.json())
+        .then((topPostData) => {
+          return topPostData[1].data.children.map((child) => {
+            return child.data
+          })
+        });
+    })
 }
 
-wsbTopPostComments()
+exports.wsbTopPostComments = wsbTopPostComments

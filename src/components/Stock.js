@@ -74,7 +74,6 @@ class Stock extends React.Component {
   }
 
   fetchData() {
-    console.log('fetching data...')
     this.props.updateStockGraphData(this.props.stockTicker)
     this.props.updateStockQuote(this.props.stockTicker)
     this.props.updateWallStreetBetsData(this.props.stockTicker)

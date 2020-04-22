@@ -5,7 +5,8 @@ import {
   REMOVE_STOCK,
   UPDATE_STOCK_GRAPH_DATA,
   UPDATE_STOCK_QUOTE,
-  UPDATE_WALL_STREET_BETS_DATA
+  UPDATE_WALL_STREET_BETS_DATA,
+  UPDATE_WSB_FEED
 } from './actions'
 
 function stocks(state = [], action) {
@@ -66,6 +67,17 @@ function stocks(state = [], action) {
   }
 }
 
+function feed(state = [], action) {
+  switch(action.type) {
+    case UPDATE_WSB_FEED:
+      console.log(action)
+      return action.feed
+    default:
+      return state
+  }
+}
+
 export const stonkpartyApp = combineReducers({
-  stocks
+  stocks,
+  feed
 })
