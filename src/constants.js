@@ -1,1 +1,1 @@
-export const STONKS_API_URL = process.env.STONKS_API_URL || 'https://stonkparty.herokuapp.com'
+export const STONKS_API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://stonkparty.herokuapp.com'

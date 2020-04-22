@@ -35,7 +35,7 @@ let AddStock = ({ dispatch }) => {
         }}
        >
          <StyledInput
-            placeholder={'TSLA'}
+            placeholder={'SPY'}
             ref={ node => {
               input = node
             }}

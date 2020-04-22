@@ -14,11 +14,11 @@ Clone this repo and then...
 ## Start the client
 
 ```
-npm start
+npm run dev-client
 ```
 
 ## Start the server
 
 ```
-nodemon server.js
+npm run dev-server
 ```
