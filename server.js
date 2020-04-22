@@ -2,7 +2,6 @@ const express = require("express");
 var cors = require('cors')
 const app = express();
 app.use(cors());
-const { createProxyMiddleware } = require('http-proxy-middleware');
 const yahooFinance = require('yahoo-finance')
 const wsb = require('./wsb')
 
