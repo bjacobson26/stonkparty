@@ -15,7 +15,7 @@
   "dependencies": {
     "animate.css": "3.7.2",
     "cors": "2.8.5",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "http-proxy-middleware": "1.0.3",
     "moment": "2.24.0",
     "node-fetch": "2.6.0",
